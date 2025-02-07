@@ -31,17 +31,23 @@
         </button>
       </div>
     </div>
-    <table class="table mt-3">
+    <table class="table mt-2">
       <thead>
         <tr>
           <th>Titulo</th>
           <th>Año</th>
+          <th>Eliminar</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="pelicula in peliculas" :key="pelicula.titulo">
+        <tr v-for="(pelicula, index) in peliculas" :key="index">
           <td>{{ pelicula.titulo }}</td>
           <td>{{ pelicula.año }}</td>
+          <td>
+            <button class="btn btn-danger" @click="eliminar(index)">
+              Eliminar
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -81,6 +87,9 @@ export default {
         año: this.año,
       });
     },
+    eliminar(index){
+      this.peliculas.splice(index, 1);
+    }
   },
 };
 </script>
